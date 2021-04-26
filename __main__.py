@@ -7,11 +7,14 @@ import getpass
 
 
 def main():
-    name = getpass.getuser()
-    arguments = sys.argv[1:]
-    filename = arguments[1]
-    arguments.pop()
-    ytname = arguments[0:]
+    try:    
+        name = getpass.getuser()
+        arguments = sys.argv[1:]
+        filename = arguments[1]
+        arguments.pop()
+        ytname = arguments[0:]
+    except:
+        print("Not enough or too many arguments") 
     params = {
         'format': 'bestaudio/best',
         'postprocessors': [{
