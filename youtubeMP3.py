@@ -9,16 +9,15 @@ arguments.pop()
 ytname = arguments[0:]
 
 params = {
-        'format': 'bestaudio/best',        
-        'postprocessors':[{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-        'outtmpl': "/home/" + name + "/pythondir/yt2mp3/" + str(filename) + "."
-        }
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }],
+    'outtmpl': "/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + "."
+}
 
 youtube = youtube_dl.YoutubeDL(params)
 
 youtube.download(ytname)
-
