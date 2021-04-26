@@ -15,7 +15,7 @@ params = {
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'outtmpl': "/home/" + name + "/" + str(filename) + ".mp3"
+        'outtmpl': "/home/" + name + "/pythondir/yt2mp3/" + str(filename) + ".mp3"
         }
 
 youtube = youtube_dl.YoutubeDL(params)
