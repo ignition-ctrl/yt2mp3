@@ -4,10 +4,10 @@ import re
 import os
 
 def download_thumbnail(link, chosenname):
-    youtubedl_out = subprocess.check_output(['youtube-dl', '--write-thumbnail', '--force-ipv4', '-o', chosenname, '--skip-download', link])
+    youtubedl_out = subprocess.check_output(['youtube-dl', '--write-thumbnail', '--force-ipv4', '-o', ('/home/server-akaza/pythondir/yt2mp3/thumbnails/' + chosenname), '--skip-download', link])
     print(str(youtubedl_out))
-    pngname = str(str(chosenname) + ".png")
-    subprocess.run(['dwebp', (chosenname+".webp"), '-o', pngname])
+    pngname = str('/home/server-akaza/pythondir/yt2mp3/thumbnails/' + str(chosenname) + ".png")
+    subprocess.run(['dwebp', ('/home/server-akaza/pythondir/yt2mp3/thumbnails/'+chosenname+".webp"), '-o', pngname])
     subprocess.run(['convert', pngname, (chosenname + ".jpg")])
     if os.path.exists(pngname):
           os.remove(pngname)
