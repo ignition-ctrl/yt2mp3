@@ -17,4 +17,6 @@ def download_thumbnail(link, chosenname):
         os.remove(chosenname+".webp")
     else:
         print("the file does not exist")
+
+download_thumbnail(sys.argv[1], sys.argv[2])
 #cleaned up the code! call this function from main with sys.arv being the arguments
