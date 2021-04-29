@@ -1,6 +1,7 @@
 import youtube_dl
 import sys
 import getpass
+import download
 
 if len(sys.argv) < 3:
     if len(sys.argv) == 2:
@@ -31,3 +32,7 @@ params = {
 youtube = youtube_dl.YoutubeDL(params)
 
 youtube.download(ytname)
+
+input = input("Do you want to download the thumbnail?")
+if input == "yes" or "y" or "Yes":
+    download.download_thumbnail(ytname, filename)
