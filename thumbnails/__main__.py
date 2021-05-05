@@ -3,8 +3,8 @@
 import youtube-dl
 import os
 import sys
-import download
+from downloadimg import download_thumbnail
 
 
 if __name__ == "__main__":
-    download.download_thumbnail(sys.argv[1], sys.argv[2])
+    downloadimg.download_thumbnail(sys.argv[1], sys.argv[2])

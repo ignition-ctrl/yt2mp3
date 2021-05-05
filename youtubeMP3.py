@@ -2,7 +2,7 @@ import youtube_dl
 import sys
 import getpass
 sys.path.insert(1, '/home/server-akaza/pythondir/yt2mp3/thumbnails')
-import download
+from downloadimg import download_thumbnail
 
 if len(sys.argv) < 3:
     if len(sys.argv) == 2:
@@ -27,11 +27,11 @@ def download_music(ytname, filename):
         'outtmpl': "/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + "."
 }
     youtube = youtube_dl.YoutubeDL(params)
-    youtube.download(ytname)
-    input = input("Do you want to download the thumbnail?")
-    if input == "yes" or "y" or "Yes":
-        download.download_thumbnail(str(ytname), str(filename)
+    youtube.download([ytname])
+    determiner = input("Do you want to download the thumbnail?")
+    if determiner == "yes" or "y" or "Yes":
+        downloadimg.download_thumbnail(str(ytname), str(filename))
     else:
-        exit(0))
+        exit(0)
 
 download_music(str(sys.argv[1]), str(sys.argv[2]))
