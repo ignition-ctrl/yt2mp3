@@ -4,7 +4,7 @@
 import youtube_dl
 import sys
 import getpass
-import youtubeMP3
+from youtubeMP3 import download_music
     
     #if len(sys.argv) < 3:
     #    if len(sys.argv) == 2:
@@ -37,4 +37,4 @@ import youtubeMP3
 
 
 if __name__ == "__main__":
-    youtubeMP3.download_music(str(sys.argv[1]), str(sys.argv[2]))
+    download_music(str(sys.argv[1]), str(sys.argv[2]))

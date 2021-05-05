@@ -12,8 +12,10 @@ def download_thumbnail(link, chosenname):
           os.remove(pngname)
     if os.path.exists(chosenname+".webp"):
         os.remove(chosenname+".webp")
-try:
-    download_thumbnail(sys.argv[1], sys.argv[2])
-except IndexError:
-    raise NameError("Please provide a link and your desired filename")
+
+if __name__ == "__main__":
+    try:
+        download_thumbnail(sys.argv[1], sys.argv[2])
+    except IndexError:
+        raise NameError("Please provide a link and your desired filename")
 #cleaned up the code! call this function from main with sys.arv being the arguments

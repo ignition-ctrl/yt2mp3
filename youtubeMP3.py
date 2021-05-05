@@ -28,10 +28,12 @@ def download_music(ytname, filename):
 }
     youtube = youtube_dl.YoutubeDL(params)
     youtube.download([ytname])
-    determiner = input("Do you want to download the thumbnail?")
-    if determiner == "yes" or "y" or "Yes":
-        downloadimg.download_thumbnail(str(ytname), str(filename))
-    else:
+    determiner = input("Do you want to download the thumbnail?\n")
+    if (determiner == "yes" or "y" or "Yes"):
+        download_thumbnail(str(ytname), str(filename))
+    elif (determiner == 'no' or "No" or "n"):
         exit(0)
+    else:
+        print('else')
 
 download_music(str(sys.argv[1]), str(sys.argv[2]))
