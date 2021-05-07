@@ -1,10 +1,12 @@
 import youtube_dl
 import sys
+import os
 import getpass
 sys.path.insert(1, '/home/server-akaza/pythondir/yt2mp3/thumbnails')
 from downloadimg import download_thumbnail
 
 if len(sys.argv) < 3:
+    print("File will be downloaded in ~/pythondir/yt2mp3/downloaded")
     if len(sys.argv) == 2:
         print("Please provide a filename without .mp3\nABORTING")
         exit(1)
@@ -14,26 +16,39 @@ if len(sys.argv) < 3:
     else:
         print("Please provide only a YT link and a filename (without .mp3) separated by a single space.")
 
-def download_music(ytname, filename):
+def download_music(ytname, filename, location):
     name = getpass.getuser()
-    params = {
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-        'source_address':'0.0.0.0',
-        'outtmpl': "/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + "."
+    if str(location) == "here":
+        filedir = os.getcwd()
+        params = {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+            'source_address':'0.0.0.0',
+            'outtmpl': str(filedir) + "/" + str(filename) + "."
+}
+    else:
+        params = {
+                'format': 'bestaudio/best',
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3', 
+                    'preferredquality': '192',
+                    }],
+                'source_address':'0.0.0.0',
+                'outtmpl': "/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + "."
 }
     youtube = youtube_dl.YoutubeDL(params)
     youtube.download([ytname])
     determiner = input("Do you want to download the thumbnail?\n")
-    if (determiner == "yes" or "y" or "Yes"):
+    if (determiner == "yes"):
         download_thumbnail(str(ytname), str(filename))
     elif (determiner == 'no' or "No" or "n"):
         exit(0)
     else:
-        print('else')
-
-download_music(str(sys.argv[1]), str(sys.argv[2]))
+        exit(1)
+if __name__ == '__main__':
+    download_music(sys.argv[1], sys.argv[2], sys.argv[3])
