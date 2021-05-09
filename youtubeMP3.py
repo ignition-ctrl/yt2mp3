@@ -45,10 +45,18 @@ def download_music(ytname, filename, location):
     youtube.download([ytname])
     determiner = input("Do you want to download the thumbnail?\n")
     if (determiner == "yes"):
-        download_thumbnail(str(ytname), str(filename))
+        seconddeter = input("Do you want to download it in the current directory?\n")
+        if seconddeter == "yes":
+            outdir = os.getcwd()
+            download_thumbnail(str(ytname), str(filename), "yes", outdir)
+        else:
+            download_thumbnail(str(ytname), str(filename), "no", "")
     elif (determiner == 'no' or "No" or "n"):
         exit(0)
     else:
         exit(1)
 if __name__ == '__main__':
-    download_music(sys.argv[1], sys.argv[2], sys.argv[3])
+    if len(sys.argv) == 3:
+        download_music(sys.argv[1], sys.argv[2], '')
+    else:
+        download_music(sys.argv[1], sys.argv[2], sys.argv[3])
