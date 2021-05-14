@@ -2,7 +2,7 @@ import youtube_dl
 import sys
 import os
 import getpass
-sys.path.insert(1, '/home/server-akaza/pythondir/yt2mp3/thumbnails')
+sys.path.insert(1, '~/pythondir/yt2mp3/thumbnails')
 from downloadimg import download_thumbnail
 
 if len(sys.argv) < 3:
