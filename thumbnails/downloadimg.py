@@ -8,7 +8,7 @@ def download_thumbnail(link, chosenname, determiner):
     if determiner == "yes":
         outdir = str(os.getcwd()) + "/"
     else:
-        print("Keyword 'here' not found; continuing download at ~/pythondir/yt2mp3/thumbnails")
+        print("Keyword 'yes' not found; continuing download at ~/pythondir/yt2mp3/thumbnails")
         outdir = "~/pythondir/yt2mp3/thumbnails/"
     youtubedl_out = subprocess.check_output(
         ['youtube-dl', '--write-thumbnail', '--force-ipv4', '-o', (outdir + chosenname), '--skip-download', link])

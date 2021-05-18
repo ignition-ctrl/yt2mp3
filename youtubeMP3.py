@@ -47,10 +47,9 @@ def download_music(ytname, filename, location):
     if (determiner == "yes"):
         seconddeter = input("Do you want to download it in the current directory?\n")
         if seconddeter == "yes":
-            outdir = os.getcwd()
-            download_thumbnail(str(ytname), str(filename), "yes", outdir)
+            download_thumbnail(str(ytname), str(filename), "yes")
         else:
-            download_thumbnail(str(ytname), str(filename), "no", "")
+            download_thumbnail(str(ytname), str(filename), "no")
     elif (determiner == 'no' or "No" or "n"):
         exit(0)
     else:
