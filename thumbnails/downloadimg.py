@@ -32,13 +32,4 @@ if __name__ == "__main__":
     except IndexError:
         raise NameError("Please provide a link and your desired filename")
 
-
-if (len(sys.argv) < 3):
-    download_thumbnail(sys.argv[1], sys.argv[2], 'no')
-
-
-try:
-    download_thumbnail(sys.argv[1], sys.argv[2], sys.argv[3])
-except:
-    raise NameError("Not correct number of arguments")
 # cleaned up the code! call this function from main with sys.arv being the arguments

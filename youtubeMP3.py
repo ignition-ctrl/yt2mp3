@@ -5,19 +5,19 @@ import getpass
 sys.path.insert(1, '~/pythondir/yt2mp3/thumbnails')
 from downloadimg import download_thumbnail
 
-if len(sys.argv) == 2:
-    print("Please provide a filename without .mp3\nABORTING")
-    exit(1)
-elif len(sys.argv) == 1:
-    print("Please provide a Youtube link and a filename without .mp3\nABORTING")
-    exit(1)
-else:
-    print("Please provide only a YT link and a filename (without .mp3) separated by a single space.")
+# if len(sys.argv) == 2:
+#     print("Please provide a filename without .mp3\nABORTING")
+#     exit(1)
+# elif len(sys.argv) == 1:
+#     print("Please provide a Youtube link and a filename without .mp3\nABORTING")
+#     exit(1)
+# else:
+#     print("Please provide only a YT link and a filename (without .mp3) separated by a single space.")
 
 def download_music(ytname):
     name = getpass.getuser()
     filename = input("Please enter your desired filename for the .mp3 file\n")
-    heredeterminer = input("Do you want to download the file in the current directory?")
+    heredeterminer = input("Do you want to download the file in the current directory?\n")
     filedir = os.getcwd()
     params = {
             'format': 'bestaudio/best',
@@ -45,7 +45,9 @@ def download_music(ytname):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 3:
-        download_music(sys.argv[1])
-    else:
-        download_music(sys.argv[1])
+    if len(sys.argv) == 1:
+        try:
+            download_music(sys.argv[1])
+        except:
+            linkfinder = input("Please enter your link\n")
+            download_music(linkfinder)
