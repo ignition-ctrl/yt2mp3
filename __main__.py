@@ -37,4 +37,4 @@ from youtubeMP3 import download_music
 
 
 if __name__ == "__main__":
-    download_music(str(sys.argv[1]), str(sys.argv[2]))
+    download_music(str(sys.argv[1:]))
