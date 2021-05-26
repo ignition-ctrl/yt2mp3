@@ -21,7 +21,7 @@ def download_thumbnail(link, chosenname=None, determiner=None):
         "cookiefile" : "~/pythondir/yt2mp3/youtube.com_cookies.txt",
         "skip_download" : True,
         "source_address" : "0.0.0.0",
-        "outtmpl" : (outdir + chosenname + "."),
+        "outtmpl" : (outdir + chosenname),
         "writethumbnail" : True,
     }
     youtube = youtube_dl.YoutubeDL(params)
