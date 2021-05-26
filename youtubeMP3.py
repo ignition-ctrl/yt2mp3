@@ -63,6 +63,7 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
                 'preferredcodec': 'mp3', 
                 'preferredquality': '192',
                 }],
+            'cookiefile' : '~/pythondir/yt2mp3/youtube.com_cookies.txt',
             'source_address':'0.0.0.0',
             'outtmpl':  (str(filedir) + "/" + str(filename) + ".") if heredeterminer == "yes" or "Yes" or "y" else ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + ".")
             #above is a really long line, with ternary operators. Useful for changing outtmpl's definition
