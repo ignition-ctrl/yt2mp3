@@ -57,20 +57,22 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
         #exit(0) #should be the final exit out of the iterations
     filedir = os.getcwd() #just incase they want to download in the current directory
     params = {
+            'writethumbnail': True,
             'format': 'bestaudio/best',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3', 
-                'preferredquality': '192',
-                }],
+                'preferredquality': '192',},
+                {'key': 'EmbedThumbnail'},],# this makes thumbnaildownload obsolete, but I'll keep it in case.
             'cookiefile' : '~/pythondir/yt2mp3/youtube.com_cookies.txt',
             'source_address':'0.0.0.0',
-            'outtmpl':  (str(filedir) + "/" + str(filename) + ".") if heredeterminer == "yes" or "Yes" or "y" else ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + ".")
+            'outtmpl':  (str(filedir) + "/" + str(filename) + ".%(ext)s") if heredeterminer == "yes" or "Yes" or "y" else ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + ".")
             #above is a really long line, with ternary operators. Useful for changing outtmpl's definition
 }
     youtube = youtube_dl.YoutubeDL(params) #the bulk of the work is made by youtube-dl. Geniuses, they are
     ytname = str(ytname)
     youtube.download([ytname])
+    print("The thumbnail has been downloaded and embedded within the file. However, you can still download it seperately.")
     determiner = input("Do you want to download the thumbnail?\n") #a little interactive determiner to download the thumbnail
     if (determiner == "yes"):
         seconddeter = input("Do you want to download it in the current directory?\n")
