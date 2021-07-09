@@ -4,7 +4,10 @@ import sys
 import os
 import getpass
 sys.path.insert(1, '~/pythondir/yt2mp3/thumbnails')
-from downloadimg import download_thumbnail
+try:
+    from downloadimg import download_thumbnail
+except:
+    print("**********\nSeperate thumbnail downloading disabled due to module failure\n**********\n")
 import eyed3
 """
 I am such a genius. I love this. Future Zack, (who hopefully got a job as a Linux SysAdmin, and is living the dream), this is how the
@@ -53,6 +56,7 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
     defaultname = False
     if filename == "":
         defaultname = True
+        print("Continuing with default filename")
     #added the above in order to use ternary operators to include optional default filenames
     cwdpath = (str(filedir) + "/" + "%(title)s.%(ext)s") if defaultname == True else (str(filedir) + "/" + str(filename) + ".%(ext)s")
     defaultpath = ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + "%(title)s.%(ext)s") if defaultname == True else ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + "%.(ext)s")
