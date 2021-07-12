@@ -12,7 +12,6 @@ import eyed3
 
 
 def download_music(ytname=None, filename=None, heredeterminer=None):
-    
     if ytname == None: 
         linkfinder = input("Please enter your link\n")
         if re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?", linkfinder):
@@ -20,10 +19,19 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
         else:
             print("No link found; please try again")
             exit(1)
+    else:
+        if not re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?", ytname):
+            newlinkfind = input("Not a valid link; please re-enter\n")
+            ytname = str(newlinkfind)
+        else:
+            print("Link detected")
     name = getpass.getuser() 
     if filename == None:
         namefinder = input("Please enter your desired filename for the .mp3 file\n")
         filename = str(namefinder)
+        print("Continuing with " + str(filename) + " as filename")
+    else:
+        print("Continuing with " + str(filename) + " as filename")
     if heredeterminer == None:
         herefinder = input("Do you want to download the file in the current directory?\n")
         heredeterminer = str(herefinder)
@@ -31,11 +39,7 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
     defaultname = False
     if filename == "":
         defaultname = True
-<<<<<<< HEAD
-=======
         print("Continuing with default filename")
-    #added the above in order to use ternary operators to include optional default filenames
->>>>>>> de423aa99cef66d1cbc6a39099f3c4e0d0de7e05
     cwdpath = (str(filedir) + "/" + "%(title)s.%(ext)s") if defaultname == True else (str(filedir) + "/" + str(filename) + ".%(ext)s")
     defaultpath = ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + "%(title)s.%(ext)s") if defaultname == True else ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + str(filename) + "%.(ext)s")
     params = {
@@ -85,23 +89,22 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
 
 
 if __name__ == '__main__':
-
-    if len(sys.argv) >= 2:
-        try:
-            download_music(sys.argv[1], sys.argv[2], sys.argv[3])
-        except:
-            try:
-                download_music(sys.argv[1], sys.argv[2])
-            except:
-                download_music(sys.argv[1])
-    else:
-<<<<<<< HEAD
+    # if len(sys.argv) >= 2:
+    #     try:
+    #         download_music(sys.argv[1], sys.argv[2], sys.argv[3])
+    #     except:
+    #         try:
+    #             download_music(sys.argv[1], sys.argv[2])
+    #         except:
+    #             download_music(sys.argv[1])
+    # else:
+    if (str(sys.argv[1:]) == "[]"):
+        print("No arguments")
         download_music()
-=======
+    if (len(sys.argv) == 0):
+        print(__name__)
         download_music()
-        #here, if I'm running the script directly, it tries running it with command line arguments
-        #Of course, if they are no arguments it throws an IndexError. So it moves on 
-        #here, now it just calls it without any sys.argv. everything is set to None, and the iterations go to work.
-
-#That's it! It should all be good now, so enjoy working on whatever projects you're on now, Zack!
->>>>>>> de423aa99cef66d1cbc6a39099f3c4e0d0de7e05
+    elif (len(sys.argv) == 2):
+        download_music(sys.argv[1])
+    elif (len(sys.argv) == 3):
+        download_music(sys.argv[1], sys.argv[2])
