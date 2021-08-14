@@ -3,11 +3,6 @@ import youtube_dl
 import sys
 import os
 import getpass
-sys.path.insert(1, '~/pythondir/yt2mp3/thumbnails')
-try:
-    from downloadimg import download_thumbnail
-except:
-    print("**********\nSeperate thumbnail downloading disabled due to module failure\n**********\n")
 import eyed3
 
 
@@ -32,9 +27,10 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
         print("Continuing with " + str(filename) + " as filename")
     else:
         print("Continuing with " + str(filename) + " as filename")
-    if heredeterminer == None:
-        herefinder = input("Do you want to download the file in the current directory?\n")
-        heredeterminer = str(herefinder)
+    # if heredeterminer == None:
+    #     herefinder = input("Do you want to download the file in the current directory?\n")
+    #     heredeterminer = str(herefinder)
+    heredeterminer = 'yes'
     filedir = os.getcwd() 
     defaultname = False
     if filename == "":
@@ -56,6 +52,7 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
 }
     youtube = youtube_dl.YoutubeDL(params) #the bulk of the work is made by youtube-dl.
     ytname = str(ytname)
+    print("Downloading in current directory...")
     youtube.download([ytname])
     titlefinder = youtube_dl.YoutubeDL({'outtmpl': '%(title)s'})
     titlelist = titlefinder.extract_info(ytname, download=False)
@@ -74,18 +71,19 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
     trackfinder = input("Track name?\n")
     audiofile.tag.title = str(trackfinder)
     audiofile.tag.save()
-    print("The thumbnail has been downloaded and embedded within the file. However, you can still download it seperately.")
-    determiner = input("Do you want to download the thumbnail?\n") 
-    if (determiner == "yes"):
-        seconddeter = input("Do you want to download it in the current directory?\n")
-        if seconddeter == "yes":
-            download_thumbnail(str(ytname), str(filename), "yes")
-        else:
-            download_thumbnail(str(ytname), str(filename), "no")
-    elif (determiner == 'no' or "No" or "n"):
-        exit(0)
-    else:
-        exit(1)
+    print("Music downloaded")
+    # print("The thumbnail has been downloaded and embedded within the file. However, you can still download it seperately.")
+    # determiner = input("Do you want to download the thumbnail?\n") 
+    # if (determiner == "yes"):
+    #     seconddeter = input("Do you want to download it in the current directory?\n")
+    #     if seconddeter == "yes":
+    #         download_thumbnail(str(ytname), str(filename), "yes")
+    #     else:
+    #         download_thumbnail(str(ytname), str(filename), "no")
+    # elif (determiner == 'no' or "No" or "n"):
+    #     exit(0)
+    # else:
+    #     exit(1)
 
 
 if __name__ == '__main__':
