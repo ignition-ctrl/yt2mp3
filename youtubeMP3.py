@@ -79,29 +79,10 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
             print(audioname+" loaded\nEyeD3 tagging:")
         artistfinder = input("Who is the artist?\n")#always remember your '\n's!
         audiofile.tag.artist = str(artistfinder)
-        albumfinder = input("Album?\n")
-        audiofile.tag.album = str(albumfinder)
         trackfinder = input("Track name?\n")
         audiofile.tag.title = str(trackfinder)
         audiofile.tag.save()
-    #here, I'm adding eyed3 tagging, as the inbuilt youtube-dl tagging can be unreliable. It uses try except to find the right file using the yt title or the filename. 
-    
-=======
-    try:
-        audioname = (filename+".mp3") if heredeterminer == "yes" or "Yes" or "y" else ("/home/" + name + "/pythondir/yt2mp3/downloaded/" + filename+".mp3")
-        audiofile = eyed3.load(audioname)
-    except:
-        audioname = (titlename+".mp3") if heredeterminer == "yes" or "Yes" or "y" else ("/home/" + name + "/pythondir/yt2mp3/downloaded/"+titlename+".mp3")
-        audiofile = eyed3.load(audioname)
-    #here, I'm adding eyed3 tagging, as the inbuilt youtube-dl tagging can be unreliable. It uses try except to find the right file using the yt title or the filename. 
-    artistfinder = input("Who is the artist?\n")#always remember your '\n's!
-    audiofile.tag.artist = str(artistfinder)
-    albumfinder = input("Album?\n")
-    audiofile.tag.album = str(albumfinder)
-    trackfinder = input("Track name?\n")
-    audiofile.tag.title = str(trackfinder)
-    audiofile.tag.save()
-    print("Music downloaded")
+        print("Music downloaded")
     # print("The thumbnail has been downloaded and embedded within the file. However, you can still download it seperately.")
     # determiner = input("Do you want to download the thumbnail?\n") 
     # if (determiner == "yes"):
