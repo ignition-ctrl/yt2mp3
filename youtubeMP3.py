@@ -55,7 +55,7 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
                 'preferredcodec': 'mp3', 
                 'preferredquality': '192',},
                 {'key': 'EmbedThumbnail'},] if m4aformat == False else [],
-            'cookiefile' : '~/pythondir/yt2mp3/youtube.com_cookies.txt',
+            'cookiefile' : '~/codedir/pythondir/yt2mp3/youtube.com_cookies.txt',
             'source_address':'0.0.0.0',
             'outtmpl':  (cwdpath) if heredeterminer == "yes" or "Yes" or "y" else (defaultpath)
 }
@@ -83,18 +83,6 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
         audiofile.tag.title = str(trackfinder)
         audiofile.tag.save()
         print("Music downloaded")
-    # print("The thumbnail has been downloaded and embedded within the file. However, you can still download it seperately.")
-    # determiner = input("Do you want to download the thumbnail?\n") 
-    # if (determiner == "yes"):
-    #     seconddeter = input("Do you want to download it in the current directory?\n")
-    #     if seconddeter == "yes":
-    #         download_thumbnail(str(ytname), str(filename), "yes")
-    #     else:
-    #         download_thumbnail(str(ytname), str(filename), "no")
-    # elif (determiner == 'no' or "No" or "n"):
-    #     exit(0)
-    # else:
-    #     exit(1)
 
 
 if __name__ == '__main__':
@@ -109,13 +97,3 @@ if __name__ == '__main__':
             else:
                 print('No arguments')
                 download_music()
-    # if (str(sys.argv[1:]) == "[]"):
-    #     print("No arguments")
-    #     download_music()
-    # if (len(sys.argv) == 0):
-    #     print(__name__)
-    #     download_music()
-    # elif (len(sys.argv) == 2):
-    #     download_music(sys.argv[1])
-    # elif (len(sys.argv) == 3):
-    #     download_music(sys.argv[1], sys.argv[2])
