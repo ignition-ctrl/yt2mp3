@@ -9,13 +9,13 @@ import eyed3
 def download_music(ytname=None, filename=None, heredeterminer=None):
     if ytname == None: 
         linkfinder = input("Please enter your link\n")
-        if re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?", linkfinder):
+        if re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?", linkfinder):
             ytname = str(linkfinder)
         else:
             print("No link found; please try again")
             exit(1)
     else:
-        if re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?", ytname):
+        if re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?", ytname):
             print('Link detected')
         else:
             newlinkfind = input("Not a valid link; please re-enter\n")
