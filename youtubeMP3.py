@@ -54,6 +54,7 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
     params = {
             'writethumbnail': True,
             'format': 'bestaudio/best' if m4aformat == False else 'm4a',
+            'external_downloader': 'aria2c',
             'postprocessors': [{
                 'key': 'FFmpegExtractAudio',
                 'preferredcodec': 'mp3', 
