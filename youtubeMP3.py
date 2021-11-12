@@ -16,7 +16,11 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
             exit(1)
     else:
         if re.match("http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?", ytname):
-            print('Link detected')
+            ytname = str(ytname)
+            titlefinder = youtube_dl.YoutubeDL({'outtmpl': '%(title)s.%(ext)s', 'quiet': 'True',})
+            titlelist = titlefinder.extract_info(ytname, download=False)
+            titlename = titlelist.get("title", None)
+            print(titlename)
         else:
             newlinkfind = input("Not a valid link; please re-enter\n")
             ytname = str(newlinkfind)
@@ -60,12 +64,8 @@ def download_music(ytname=None, filename=None, heredeterminer=None):
             'outtmpl':  (cwdpath) if heredeterminer == "yes" or "Yes" or "y" else (defaultpath)
 }
     youtube = youtube_dl.YoutubeDL(params) #the bulk of the work is made by youtube-dl.
-    ytname = str(ytname)
-    print("Downloading in current directory...")
     youtube.download([ytname])
-    titlefinder = youtube_dl.YoutubeDL({'outtmpl': '%(title)s.%(ext)s'})
-    titlelist = titlefinder.extract_info(ytname, download=False)
-    titlename = titlelist.get("title", None)
+    print("Downloading in current directory...")
     if m4aformat == True:
         print("Skipping eyeD3 tagging, assuming file is a mix")
     else:
