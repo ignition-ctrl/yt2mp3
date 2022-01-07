@@ -1,5 +1,6 @@
 import re
-import youtube_dl
+import yt_dlp as youtube_dl
+#from yt_dlp import YoutubeDL
 import sys
 import os
 import getpass
